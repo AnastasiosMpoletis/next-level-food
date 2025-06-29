@@ -1,14 +1,19 @@
 import Link from 'next/link';
+import { Suspense } from 'react';
 import classes from './page.module.css';
 import MealsGrid from '@/components/meals/meals-grid.js';
 import { getMeals } from '@/lib/meals.js';
 
-/**
- * In Next.js we can use async-await to server components!
- */
-export default async function MealsPage() {
+async function Meals() {
   const meals = await getMeals();
 
+  return (<MealsGrid meals={meals} />);
+}
+
+/**
+ * In Next.js we can use async-await to server components! @see previous commits if removed from here.
+ */
+export default function MealsPage() {
   return (
     <>
       <header className={classes.header}>
@@ -21,7 +26,9 @@ export default async function MealsPage() {
         </p>
       </header>
       <main className={classes.main}>
-        <MealsGrid meals={meals} />
+        <Suspense fallback={<p className={classes.loading}>Fetching meals...</p>}>
+          <Meals />
+        </Suspense>
       </main>
     </>
   );
