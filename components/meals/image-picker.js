@@ -50,6 +50,7 @@ export default function ImagePicker({ label, name }) {
           ref={imageInput}
           // multiple // in case we want to upload multiple files
           onChange={handleImageChange}
+          required
         />
         <button
           className={classes.button}
