@@ -3,6 +3,25 @@ import classes from './page.module.css';
 import { getMeal } from '@/lib/meals.js';
 import { notFound } from 'next/navigation';
 
+/**
+ * Adds dynamic metadata.
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
+export async function generateMetadata({ params }) {
+  const meal = getMeal(params.mealSlug);
+
+  if (!meal) {
+    notFound(); // It will stop this component from executing and will show the closest not-found or error page
+  }
+
+  return {
+    title: meal.title,
+    description: meal.summary,
+  };
+}
+
 export default function MealDetailsPage({ params }) {
   const meal = getMeal(params.mealSlug);
 
