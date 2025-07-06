@@ -5,7 +5,6 @@ import MealsGrid from '@/components/meals/meals-grid.js';
 import { getMeals } from '@/lib/meals.js';
 
 async function Meals() {
-  console.log("Meals");
   const meals = await getMeals();
 
   return (<MealsGrid meals={meals} />);
