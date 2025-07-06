@@ -9,11 +9,9 @@ export default function MealItem({ title, slug, image, summary, creator }) {
       <header>
         <div className={classes.image}>
           <Image
-            priority="true"
-            unoptimized="true"
             src={`https://aboletis-nextjs-demo-users-image.s3.eu-central-1.amazonaws.com/${image}`}
             alt={title}
-            fill="true"
+            fill
           />
         </div>
         <div className={classes.headerText}>
